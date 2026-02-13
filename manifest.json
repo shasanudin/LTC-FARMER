@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "LTC Auto Farmer",
+  "version": "1.0.0",
+  "description": "Auto increase LTC and withdraw to your address",
+  "permissions": [
+    "storage",
+    "scripting",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "https://earnltc.io/*",
+    "https://aaa.s3.amazonaws.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://earnltc.io/*"],
+      "js": ["content.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [{
+    "resources": ["inject.js", "libs/*"],
+    "matches": ["https://earnltc.io/*"]
+  }],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  }
+}
